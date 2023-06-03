@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pokeka/Home.dart';
+import 'package:pokeka_1/Home.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -56,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          HomePage(), // AddPageへ遷移
+                          HomePage(), // HomePageへ遷移
                     ),
                   );
                 },
@@ -64,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               MaterialButton(
                 color: const Color(0xFFE0E0E0),
                 child: const Text(
-                  'ログアウトする',
+                  'ログイン',
                   style: TextStyle(color: Colors.black),
                 ),
                 shape: RoundedRectangleBorder(

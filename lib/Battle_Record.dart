@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:pokeka_1/PlayerPage.dart';
-import 'Battle_Record.dart';
+import 'package:pokeka_1/AddPage.dart';
+import 'package:pokeka_1/Record.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class BattleRecordPage extends StatefulWidget {
+  const BattleRecordPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<BattleRecordPage> createState() => _BattleRecordPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _BattleRecordPageState extends State<BattleRecordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ホーム'),
+        title: Text('戦績ページ'),
       ),
       body: Column(
         children: [
           MaterialButton(
-            child: Text('プレイヤーページ'),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                  builder: (context) =>
-                    PlayerPage(),
-                ),
-              );
-            },
-          ),
-          MaterialButton(
-            child: Text('戦績ページ'),
+            child: Text('戦績データを表示'),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      BattleRecordPage(),
+                      RecordPage(),
+                ),
+              );
+            },
+          ),
+          MaterialButton(
+            child: Text('戦績データを入力'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      AddPage(),
                 ),
               );
             },

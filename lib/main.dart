@@ -1,9 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pokeka_1/Home.dart';
+import 'package:pokeka_1/Login.dart';
+import 'package:pokeka_1/app.dart';
+import 'package:pokeka_1/firebase_options.dart';
 
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,72 +23,77 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const App(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+  Widget build(BuildContext context) => Scaffold(
+      body: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting)
+            // すプラッシュ画面などに置き換えてもいい
+            return const SizedBox();
 
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ログインページ'),
-      ),
-      body: Column(
-        children: <Widget>[
-          Text('ユーザー名'),
-          Text('パスワード'),
-          Row(
-            children: [
-              MaterialButton(
-                color: const Color(0xFFE0E0E0),
-                child: const Text(
-                  '登録する',
-                  style: TextStyle(color: Colors.black),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20), //角の丸み
-                  // side: BorderSide(color: Colors.black), //枠線の設定
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          HomePage(), // HomePageへ遷移
-                    ),
-                  );
-                },
-              ),
-              MaterialButton(
-                color: const Color(0xFFE0E0E0),
-                child: const Text(
-                  'ログイン',
-                  style: TextStyle(color: Colors.black),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20), //角の丸み
-                  // side: BorderSide(color: Colors.black), //枠線の設定
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ],
+          if (snapshot.hasData) {
+            // User が null ではない、つまりサインイン済みのホーム画面へ
+            return MystatefullWidget();
+          }
+
+          return LoginPage();
+        },
       ),
     );
-  }
 }
 
+
+// class MystatefullWidget extends StatefulWidget {
+//   const MystatefullWidget({Key? key}) : super(key: key);
+//
+//   @override
+//   State<MystatefullWidget> createState() => _MystatefullWidgetState();
+// }
+//
+// class _MystatefullWidgetState extends State<MystatefullWidget> {
+//   static const _screens = [
+//     HomePage(),
+//   ];
+//
+//   int _selectedIndex = 0;
+//
+//   void _onItemTapped(int index) {
+//     setState(() {
+//       _selectedIndex = index;
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: _screens[_selectedIndex],
+//       bottomNavigationBar: BottomNavigationBar(
+//         currentIndex: _selectedIndex,
+//         onTap: _onItemTapped,
+//         items: const <BottomNavigationBarItem>[
+//           BottomNavigationBarItem(
+//               icon: Icon(Icons.view_carousel_outlined), label: ""),
+//           BottomNavigationBarItem(
+//               icon: Icon(Icons.note_add_outlined), label: ""),
+//           BottomNavigationBarItem(
+//               icon: Icon(Icons.auto_graph_outlined), label: ""),
+//           BottomNavigationBarItem(
+//               icon: Icon(Icons.account_circle), label: ""),
+//         ],
+//         type: BottomNavigationBarType.fixed,
+//       ),
+//     );
+//   }
+// }

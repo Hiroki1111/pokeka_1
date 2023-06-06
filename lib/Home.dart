@@ -14,34 +14,55 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ホーム'),
+        title: Text('出場予定イベント'),
       ),
-      body: Column(
+      body: ListView(
         children: [
-          MaterialButton(
-            child: Text('プレイヤーページ'),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                  builder: (context) =>
-                    PlayerPage(),
+          Card(
+            child: Row(
+              children: [
+                Text(
+                  '8月9日'
                 ),
-              );
-            },
-          ),
-          MaterialButton(
-            child: Text('戦績ページ'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      BattleRecordPage(),
+                SizedBox(width: 20),
+                Text(
+                    'Metagames'
                 ),
-              );
-            },
+                SizedBox(width: 20),
+              ],
+            ),
           ),
+          Card(
+            child: Row(
+              children: [
+                Text(
+                    '8月9日'
+                ),
+                SizedBox(width: 20),
+                Text(
+                    'Metagames'
+                ),
+                SizedBox(width: 20),
+              ],
+            ),
+          ),Card(
+            child: Row(
+              children: [
+                Text(
+                    '8月9日'
+                ),
+                SizedBox(width: 20),
+                Text(
+                    'Metagames'
+                ),
+                SizedBox(width: 20),
+              ],
+            ),
+          ),
+          IconButton(
+            onPressed: (){},
+            icon: const Icon(Icons.add_box),
+            iconSize: 50),
         ],
       ),
     );

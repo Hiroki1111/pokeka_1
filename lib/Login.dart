@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'Home.dart';
@@ -10,6 +11,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  String _email = '';
+  String _password = '';
+
+  bool _isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +24,47 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Column(
         children: <Widget>[
-          Text('ユーザー名'),
-          Text('パスワード'),
+          TextField(
+            decoration: InputDecoration(
+              labelText: "mail",
+              hintText: 'xxx@gmail.com',
+              labelStyle: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            onChanged: (String value) {
+              setState(() {
+                _email = value;
+              });
+            },
+          ),
+          TextField(
+            obscureText: _isObscure,
+            decoration: InputDecoration(
+              labelText: "password",
+              hintText: '6文字以上',
+              suffixIcon: IconButton(
+                // 文字の表示、非表示でアイコンを変える
+                icon: Icon(_isObscure
+                    ? Icons.visibility_off
+                    : Icons.visibility),
+                // アイコンがタップされたら現在と反対の状態をセット
+                onPressed: () {
+                  setState(() {
+                    _isObscure = !_isObscure;
+                  });
+                },
+              ),
+              labelStyle: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            onChanged: (String value) {
+              setState(() {
+                _password = value;
+              });
+            },
+          ),
           Row(
             children: [
               MaterialButton(
@@ -32,14 +77,24 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(20), //角の丸み
                   // side: BorderSide(color: Colors.black), //枠線の設定
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          HomePage(), // HomePageへ遷移
-                    ),
-                  );
+                onPressed: () async {
+                  try {
+                    final User? user = (
+                        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                            email: _email, password: _password)
+                    ).user;
+                    if (user != null) {
+                      print('ユーザーを登録しました ${user.email} ${user.uid}');
+                    }
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage()));
+                  } catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('ユーザー登録ができません')));
+                    print(e);
+                  }
                 },
               ),
               MaterialButton(
@@ -52,7 +107,26 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(20), //角の丸み
                   // side: BorderSide(color: Colors.black), //枠線の設定
                 ),
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    final User? user = (
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: _email, password: _password)).user;
+                    if (user != null) {
+                      print('ログインしました ${_email} ${user.uid}');
+                    }
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomePage()));
+                  }
+                  // 例外処理
+                  catch (e) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      // snackbarでログインができなかったことを知らせる
+                        const SnackBar(content: Text('ログインができませんでした'),));
+                  }
+                },
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokeka_1/PlayerPage.dart';
+import 'package:pokeka_1/Schedule.dart';
 import 'Battle_Record.dart';
 
 class HomePage extends StatefulWidget {
@@ -60,7 +61,14 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           IconButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>  SchedulePage(),
+                )
+              );
+            },
             icon: const Icon(Icons.add_box),
             iconSize: 50),
         ],

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokeka_1/PlayerPage.dart';
 import 'package:pokeka_1/Schedule.dart';
-import 'Battle_Record.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +9,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,58 +18,24 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(
         children: [
-          Card(
-            child: Row(
-              children: [
-                Text(
-                  '8月9日'
-                ),
-                SizedBox(width: 20),
-                Text(
-                    'Metagames'
-                ),
-                SizedBox(width: 20),
-              ],
-            ),
+          
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>  SchedulePage(),
+                    )
+                  );
+                },
+                icon: const Icon(Icons.add_box_rounded),
+                iconSize: 50
+              ),
+            ],
           ),
-          Card(
-            child: Row(
-              children: [
-                Text(
-                    '8月9日'
-                ),
-                SizedBox(width: 20),
-                Text(
-                    'Metagames'
-                ),
-                SizedBox(width: 20),
-              ],
-            ),
-          ),Card(
-            child: Row(
-              children: [
-                Text(
-                    '8月9日'
-                ),
-                SizedBox(width: 20),
-                Text(
-                    'Metagames'
-                ),
-                SizedBox(width: 20),
-              ],
-            ),
-          ),
-          IconButton(
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>  SchedulePage(),
-                )
-              );
-            },
-            icon: const Icon(Icons.add_box),
-            iconSize: 50),
         ],
       ),
     );

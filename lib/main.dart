@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:pokeka_1/Home.dart';
-import 'package:pokeka_1/Login.dart';
+import 'package:pokeka_1/Auth/Login.dart';
 import 'package:pokeka_1/app.dart';
 import 'package:pokeka_1/firebase_options.dart';
 
@@ -53,47 +52,3 @@ class App extends StatelessWidget {
       ),
     );
 }
-
-
-// class MystatefullWidget extends StatefulWidget {
-//   const MystatefullWidget({Key? key}) : super(key: key);
-//
-//   @override
-//   State<MystatefullWidget> createState() => _MystatefullWidgetState();
-// }
-//
-// class _MystatefullWidgetState extends State<MystatefullWidget> {
-//   static const _screens = [
-//     HomePage(),
-//   ];
-//
-//   int _selectedIndex = 0;
-//
-//   void _onItemTapped(int index) {
-//     setState(() {
-//       _selectedIndex = index;
-//     });
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: _screens[_selectedIndex],
-//       bottomNavigationBar: BottomNavigationBar(
-//         currentIndex: _selectedIndex,
-//         onTap: _onItemTapped,
-//         items: const <BottomNavigationBarItem>[
-//           BottomNavigationBarItem(
-//               icon: Icon(Icons.view_carousel_outlined), label: ""),
-//           BottomNavigationBarItem(
-//               icon: Icon(Icons.note_add_outlined), label: ""),
-//           BottomNavigationBarItem(
-//               icon: Icon(Icons.auto_graph_outlined), label: ""),
-//           BottomNavigationBarItem(
-//               icon: Icon(Icons.account_circle), label: ""),
-//         ],
-//         type: BottomNavigationBarType.fixed,
-//       ),
-//     );
-//   }
-// }

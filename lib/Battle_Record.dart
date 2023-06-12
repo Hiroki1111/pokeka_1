@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pokeka_1/AddPage.dart';
 import 'package:pokeka_1/Record.dart';
 
+import 'Graph.dart';
+
 class BattleRecordPage extends StatefulWidget {
   const BattleRecordPage({super.key});
 
@@ -17,9 +19,16 @@ class _BattleRecordPageState extends State<BattleRecordPage> {
         title: Text('戦績ページ'),
       ),
       body: Column(
+        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           MaterialButton(
-            child: Text('戦績データを表示'),
+            child: Text(
+                '使用デッキ',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -31,17 +40,30 @@ class _BattleRecordPageState extends State<BattleRecordPage> {
             },
           ),
           MaterialButton(
-            child: Text('戦績データを入力'),
-            onPressed: () {
+            child: Text('ルギア'),
+            onPressed: (){
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      AddPage(),
+                    builder: (context) =>
+                        GraphPage()
                 ),
               );
             },
           ),
+          IconButton(onPressed: (){}, icon: Icon(Icons.add)),
+          // MaterialButton(
+          //   child: Text('戦績データを入力'),
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) =>
+          //             AddPage(),
+          //       ),
+          //     );
+          //   },
+          // ),
         ],
       ),
     );

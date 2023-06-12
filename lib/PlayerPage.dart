@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pokeka_1/Auth/Login.dart';
 import 'package:pokeka_1/Deck.dart';
 
 class PlayerPage extends StatefulWidget {
@@ -14,6 +17,17 @@ class _PlayerPageState extends State<PlayerPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('プレイヤーページ'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              // ログアウト処理
+              // 内部で保持しているログイン情報等が初期化される
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+            },
+            icon: Icon(Icons.logout),
+          )
+        ],
       ),
       body: Column(
         children: [

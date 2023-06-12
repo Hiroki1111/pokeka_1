@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokeka_1/Graph_display.dart';
 
 
 class GraphPage extends StatefulWidget {
@@ -20,13 +21,13 @@ class _GraphPageState extends State<GraphPage> {
           MaterialButton(
             child: Text('白ルギア'),
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) =>
-              //         RecordPage(),
-              //   ),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      RecordChart(),
+                ),
+              );
             },
           ),
           MaterialButton(

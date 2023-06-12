@@ -37,11 +37,11 @@ class _MystatefullWidgetState extends State<MystatefullWidget> {
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-              icon: Icon(Icons.view_carousel_outlined), label: ""),
+              icon: Icon(Icons.event_note), label: ""),
           BottomNavigationBarItem(
               icon: Icon(Icons.note_add_outlined), label: ""),
           BottomNavigationBarItem(
-              icon: Icon(Icons.auto_graph_outlined), label: ""),
+              icon: Icon(Icons.bar_chart), label: ""),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_circle), label: ""),
         ],

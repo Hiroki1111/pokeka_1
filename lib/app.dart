@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokeka_1/Battle_Record.dart';
+import 'package:pokeka_1/View/Record/Battle_Record.dart';
 import 'package:pokeka_1/Graph.dart';
 import 'package:pokeka_1/PlayerPage.dart';
 

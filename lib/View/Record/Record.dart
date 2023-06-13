@@ -16,21 +16,7 @@ class _RecordPageState extends State<RecordPage> {
         title: Text('戦績ページ'),
       ),
       body: Column(
-        children: <Widget>[
-          Text('使用デッキ'),
-          MaterialButton(
-            child: Text('ルギア'),
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      GraphPage()
-                ),
-              );
-            },
-          ),
-        ],
+
       ),
     );
   }

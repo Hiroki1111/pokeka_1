@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(

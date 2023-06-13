@@ -31,22 +31,27 @@ class _PlayerPageState extends State<PlayerPage> {
       ),
       body: Column(
         children: [
-          Text('マスターリーグ'),
+          Row(
+            children: [
+              Text('・リーグ名：'),
+            ],
+          ),
           Text('プレイヤー名：'),
           Text('ポイント：'),
           Text('ランキング：'),
-          MaterialButton(
-            child: Text('使用デッキ'),
-            onPressed: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                    DeckPage(),
-                )
-              );
-            },
-          ),
+          Text('使用デッキ：'),
+          // MaterialButton(
+          //   child: Text('使用デッキ'),
+          //   onPressed: (){
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) =>
+          //           DeckPage(),
+          //       )
+          //     );
+          //   },
+          // ),
         ],
       ),
     );

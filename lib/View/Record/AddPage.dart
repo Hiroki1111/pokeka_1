@@ -43,8 +43,6 @@ class _AddPageState extends State<AddPage> {
           ),
           list(),
           list(),
-          list(),
-          list(),
         ],
       ),
     );

@@ -36,7 +36,6 @@ class _SchedulePageState extends State<SchedulePage> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,9 +120,8 @@ class _SchedulePageState extends State<SchedulePage> {
                 'memo': _memo.text,
                 'date': _date,
               };
-
-              FirebaseFirestore.instance.collection('Users').doc(uid)
-                  .collection('schedule').add(schedule);
+                FirebaseFirestore.instance.collection('Users').doc(uid)
+                    .collection('schedule').add(schedule);
 
               Navigator.pop(
                 context,
